@@ -32,7 +32,7 @@ class UserController extends Controller
     }
     public function postLogin(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('home')->with('success','thanh cong cmnr');
+            return redirect()->route('index')->with('success','thanh cong cmnr');
         }
         return redirect()->back()->with('error','that bai cmnr');
 

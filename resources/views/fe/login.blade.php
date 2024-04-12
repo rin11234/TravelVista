@@ -1,62 +1,63 @@
 @extends('fe.index')
 @section('main')
-    <div class="login-form w3_form">
-        <!--  Title-->
-        <div class="login-title w3_title">
-            <h1>Elegant login Form</h1>
-        </div>
-        <div class="login w3_login">
-            <h2 class="login-header w3_header">Log in</h2>
-            <div class="w3l_grid">
-                <form method="POST" action="{{ route('postLogin') }}">
-                    @csrf
-                    <div class="form-group mb-3">
-                        <input type="text" required="" class="form-control" name="email" placeholder="Your Email">
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <input class="form-control" required="" type="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="login_footer form-group mb-3">
-                        <div class="chek-form">
-                            <div class="custome-checkbox">
-                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
-                                <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                            </div>
+     <!-- Login area S t a r t  -->
+     <div class="login-area section-padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10">
+                    <div class="login-card">
+                        <!-- Logo -->
+                        <div class="logo mb-40">
+                            <a href="index.html" class="mb-30 d-block">
+                                <img src="assets/images/logo/logo.png" alt="logo" class="changeLogo">
+                            </a>
                         </div>
-                        <a href="#">Forgot password?</a>
-                    </div>
-                    <div class="form-group mb-3">
-                        <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
-                    </div>
-                </form>
+                        <!-- Form -->
+                        <form action="{{ route('postLogin') }}" method="POST">
+                            @csrf
+                            <div class="position-relative contact-form mb-24">
+                                <label class="contact-label">Email </label>
+                                <input class="form-control contact-input" type="text" name="email"
+                                    placeholder="Enter Your Email">
+                            </div>
 
-                <div class="second-section w3_section">
-                    <div class="bottom-header w3_bottom">
-                        <h3>OR</h3>
-                    </div>
-                    <div class="social-links w3_social">
-                        <ul>
-                            <!-- facebook -->
-                            <li> <a class="facebook" href="#" target="blank"><i class="fa fa-facebook"></i></a></li>
+                            <div class="contact-form mb-24">
+                                <div class="position-relative ">
+                                    <div class="d-flex justify-content-between aligin-items-center">
+                                        <label class="contact-label"  >Password</label>
+                                        <a href="forgot-pass.html"><span class="text-primary text-15"> Forgot
+                                                password? </span></a>
+                                    </div>
+                                    <input type="password" class="form-control contact-input password-input"
+                                    type="password" name="password" placeholder="Password">
+                                    <i class="toggle-password ri-eye-line"></i>
+                                </div>
+                            </div>
 
-                            <!-- twitter -->
-                            <li> <a class="twitter" href="#" target="blank"><i class="fa fa-twitter"></i></a></li>
+                            <div class="form-group mb-3">
+                                <button type="submit" class="btn btn-fill-out btn-block" name="login">Log in</button>
+                            </div>
+                        </form>
 
-                            <!-- google plus -->
-                            <li> <a class="googleplus" href="#" target="blank"><i class="fa fa-google-plus"></i></a>
-                            </li>
-                        </ul>
+                        <div class="login-footer">
+                            <div class="create-account">
+                                <p>
+                                    Don’t have an account?
+                                    <a href="register.html">
+                                        <span class="text-primary">Register</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <a href="javascript:void(0)"
+                                class="login-btn d-flex align-items-center justify-content-center gap-10">
+                                <img src="assets/images/icon/google-icon.png" alt="img" class="m-0">
+                                <span> login with Google</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="bottom-text w3_bottom_text">
-                    <p>No account yet?<a href="{{ route('register') }}">Signup</a></p>
-                    <h4> <a href="#">Forgot your password?</a></h4>
-                </div>
-
             </div>
         </div>
-
-    </div>Fs
+    </div>
+    <!--/ End-of Login -->
 @endsection

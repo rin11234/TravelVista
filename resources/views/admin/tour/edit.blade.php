@@ -33,6 +33,11 @@
             <label for="diem_du_lich">Điểm du lịch:</label>
             <input type="text" id="diem_du_lich" name="diem_du_lich" class="form-control" value="{{ $tour->diem_du_lich }}" required>
         </div>
+        <div class="form-group">
+            <label>Mô Tả Chi Tiết</label>
+            <textarea name="description" id="content" class="form-control">{{ $tour->description }}</textarea>
+        </div>
+
         <div class="form-group has-error">
             <label for="price" class="form-label">Giá</label>
             <input type="text" class="form-control" id="price" name="price" value="{{$tour->price }}">

@@ -3,8 +3,13 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DestinationsController;
+use App\Http\Controllers\admin\PostController;
 use App\Http\Controllers\Admin\TourController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\Fe\DestinationNewController;
 use App\Http\Controllers\Fe\HomeController;
+use App\Http\Controllers\Fe\TourPakageController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -22,15 +27,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class ,'index'])->name('home');
 Route::get('detail/{id}', [HomeController::class ,'detail'])->name('detail');
+Route::get('/search', 'TourController@search')->name('tour.search');
 Route::get('login', [UserController::class ,'login'])->name('login');
 Route::post('postLogin', [UserController::class ,'postLogin'])->name('postLogin');
 Route::get('register', [UserController::class ,'register'])->name('register');
 Route::post('postRegister', [UserController::class ,'postRegister'])->name('postRegister');
-route::get('booking',[HomeController::class,'booking'])->name('booking');
+route::get('search',[SearchController::class ,'search'])->name('search');
+route::get('Tour-pakage',[TourPakageController::class ,'tourPakage'])->name('tourPakage');
+route::get('destinations-new',[DestinationNewController::class ,'destinationsNew'])->name('destinationsNew');
+
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('main', [AdminController::class, 'index'])->name('index');
     Route::resource('category', CategoryController::class);
     Route::resource('destinations', DestinationsController::class);
     Route::resource('tours', TourController::class);
+    Route::resource('booking',BookingController::class);
+    Route::resource('post-blog',PostController::class);
 });
 

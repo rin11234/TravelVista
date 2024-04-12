@@ -13,7 +13,9 @@ class HomeController extends Controller
     public function index(){
         $featuredTour = Tour::where('stock',1)->get();
         $destinationNew = Destinations::orderby('created_at','desc')->take(4)->get();
-        return view('fe.home',compact('destinationNew','featuredTour'));
+        $destinations = Destinations::all();
+        $tourTypes = Tour::all();
+        return view('fe.home',compact('destinationNew','featuredTour','destinations','tourTypes'));
     }
     public function detail($id) {
         // Tìm tour dựa trên ID
@@ -23,23 +25,26 @@ class HomeController extends Controller
         $destinationNew = Destinations::orderby('created_at','desc')->take(4)->get();
         return view('fe.details', compact('tour','related','destinationNew'));
     }
-public function booking(Request $request) {
-    // Validate form data
-    $validatedData = $request->validate([
-        'fullname' => 'required|string|max:255',
-        'phone' => 'required|string|max:20',
-        'email' => 'required|string|email|max:255',
-        'adult' => 'required|integer|min:1',
-        'children' => 'nullable|integer|min:0',
-        'start_date_book' => 'nullable|date',
-        'message' => 'nullable|string',
-        'tour_id' => 'required|exists:tours,id', // Ensure tour_id exists in tours table
-    ]);
+    public function booking(Request $request) {
+        // Validate form data
+        $request->validate([
+            'fullname' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'adult' => 'required|integer',
+            // Thêm các quy tắc kiểm định cho các trường khác nếu cần
+        ]);
 
-    $booking = Booking::create($validatedData);
+        // Lấy tour_id từ yêu cầu
+        $tourId = $request->input('tour_id');
 
-    // Redirect back with a success message or any other action
-    return redirect()->back()->with('success', 'Booking successful!');
-}
+        // Tạo một đối tượng Booking từ dữ liệu biểu mẫu và tour_id
+        $bookingData = $request->except('tour_id');
+        $bookingData['tour_id'] = $tourId;
+        $booking = Booking::create($bookingData);
+        // Redirect về trang trước với thông báo thành công hoặc bất kỳ hành động nào khác
+        return redirect()->back()->with('success', 'Booking successful!');
+    }
+
 
 }

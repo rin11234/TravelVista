@@ -70,7 +70,7 @@ class TourController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function search($id)
     {
         //
     }
@@ -123,4 +123,5 @@ class TourController extends Controller
         $tour->delete();
         return redirect()->route('tours.index')->with('success','xoa thanh cong');
     }
+
 }

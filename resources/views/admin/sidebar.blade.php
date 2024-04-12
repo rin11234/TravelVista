@@ -41,48 +41,43 @@
             <li class="nav-item">
               <a href="{{ route('category.create') }}" class="nav-link active">
                 <i class="far fa-circle nav-icon"></i>
-                <p>thêm danh mục</p>
+                <p>Add cetegory</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./index2.html" class="nav-link">
+              <a href="{{ route('category.index') }}" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v2</p>
+                <p>Index</p>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="./index3.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Dashboard v3</p>
-              </a>
-            </li>
+
           </ul>
         </li>
         <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Điểm đến
+                Destinations
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('destinations.create') }}" class="nav-link active">
+                <a href="{{ route('destinations.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>thêm điểm đến </p>
+                  <p>Add destinations </p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('destinations.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sachs</p>
+                  <p>Index</p>
                 </a>
               </li>
             </ul>
           </li>
           <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Tours
@@ -91,7 +86,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('tours.create') }}" class="nav-link active">
+                <a href="{{ route('tours.create') }}" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
                   <p>thêm Tour</p>
                 </a>
@@ -99,12 +94,52 @@
               <li class="nav-item">
                 <a href="{{ route('tours.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sachs</p>
+                  <p>Index</p>
                 </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Booking
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="{{ route('booking.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Danh sách </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Blog
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+              <li class="nav-item">
+                <a href="{{ route('post-blog.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add blog </p>
+                </a>
+                <a href="{{ route('post-blog.index') }}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>A= </p>
+                  </a>
               </li>
             </ul>
           </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
-  </div>
+</div>

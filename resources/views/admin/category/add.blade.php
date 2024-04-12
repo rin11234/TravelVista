@@ -31,5 +31,5 @@
     <div class="card-footer">
       <button type="submit" class="btn btn-danger">Tạo Danh Mục</button>
     </div>
-  </form>
+</form>
 @endsection
