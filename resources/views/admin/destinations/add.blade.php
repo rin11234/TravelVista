@@ -6,7 +6,7 @@
 
         <div class="form-group has-error">
             <label for="name" class="form-label">Địa Điểm Đến</label>
-            <input type="text" class="form-control" id="title" name="title" >
+            <input type="text" class="form-control" id="title" name="name" >
         </div>
         <div class="form-group has-error">
             <label for="exampleInputEmail1">ảnh </label>
@@ -22,13 +22,16 @@
                 @endforeach
             </select>
         </div>
-
+        <div class="form-group has-error">
+            <label for="name" class="form-label">slug</label>
+            <input type="text" class="form-control" id="slug" name="slug" >
+        </div>
         <div class="form-group has-error">
             <label for="description" class="form-label">Mô Tả</label>
-            <textarea class="form-control" id="description" name="content" rows="4"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Thêm Blog</button>
+        <button type="submit" class="btn btn-primary">Add Destinations</button>
     </form>
 
 @endsection

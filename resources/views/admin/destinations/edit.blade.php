@@ -16,7 +16,7 @@
             <div>
                 <img src="{{ asset('storage/images/' . $destination->image) }}" style="max-width:100px; margin-top: 10px;" />
                 <p>Ảnh hiện tại</p>
-            </div>
+        </div>
         @endif
 
         </div>

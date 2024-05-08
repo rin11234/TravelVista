@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Models\Category;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -14,7 +17,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('admin.post.index',compact('posts'));
     }
 
     /**
@@ -24,7 +28,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.post.add',compact('categories','users'));
     }
 
     /**
@@ -35,7 +41,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        if($request->hasFile('photo')){
+            $fileName = $request->photo->getClientOriginalName();
+            $request->photo->storeAs('public/images',$fileName);
+        } else{
+            $fileName = null;
+        }
+        $data = $request->all();
+        $data['image'] = $fileName;
+
+        try{
+            $post = Post::create($data);
+            return redirect()->route('post.index')->with('success','add thanh cong');
+        }catch(\Throwable $th){
+            return redirect()->back()->with('error','error'. $th->getMessage());
+        }
     }
 
     /**
@@ -55,9 +76,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        $users = User::all();
+        return view('admin.post.edit',compact('post','categories','users'));
     }
 
     /**
@@ -67,10 +90,28 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        try {
+            $data = $request->except('photo');
+
+            // Check if a new photo file is uploaded
+            if ($request->hasFile('photo')) {
+                $fileName = $request->photo->getClientOriginalName();
+                // Store the photo in the storage/app/public/images directory
+                $request->photo->storeAs('public/images', $fileName);
+                // Update the image attribute of the post with the new file name
+                $data['image'] = $fileName;
+            }
+
+            $post->update($data);
+
+            return redirect()->route('post.index')->with('success', 'Cập nhật thành công');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'Cập nhật thất bại: ' . $th->getMessage());
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -78,8 +119,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('post.index')->with('success', 'xóa thành công');
     }
 }

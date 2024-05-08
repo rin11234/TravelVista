@@ -7,7 +7,7 @@
                 Danh sách danh mục
             </div>
             <div class="card-body">
-                <a href="{{ route('category.index') }}" class="btn btn-primary mb-3">Tạo mới danh mục</a>
+                <a href="{{ route('category.create') }}" class="btn btn-primary mb-3">Tạo mới danh mục</a>
                 <table class="table">
                     <thead>
                         <tr>
