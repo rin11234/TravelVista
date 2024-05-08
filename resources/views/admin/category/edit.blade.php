@@ -5,7 +5,7 @@
     <div class="card-body">
       <div class="form-group has-error">
         <label for="exampleInputEmail1">Tên Danh mục </label>
-        <input type="text" class="form-control" name='name' placeholder="Enter Name">
+        <input type="text" class="form-control" name='name' placeholder="Enter Name" value="{{ $category->name }}">
 
 
       </div>
@@ -13,9 +13,9 @@
         <label>Danh Mục</label>
         <select class="form-control" name="parent_id">
             <option value="0"> Danh Mục Cha </option>
-           @foreach ($categories as $item)
-           <option value="{{ $item->id }}"> {{ $item->name }} </option>
-           @endforeach
+            @foreach ($categories as $item)
+                <option value="{{ $item->id }} " {{ $item->id == $category->parent_id ? 'selected' : '' }}> {{ $item->name }} </option>
+            @endforeach
         </select>
     </div>
     <div class="form-group">
@@ -29,7 +29,7 @@
     <!-- /.card-body -->
 
     <div class="card-footer">
-      <button type="submit" class="btn btn-danger">Tạo Danh Mục</button>
+      <button type="submit" class="btn btn-danger">Update Danh Mục</button>
     </div>
   </form>
 @endsection

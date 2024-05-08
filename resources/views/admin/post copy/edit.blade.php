@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <form method="POST" action="{{ route('booking.update',$booking->id) }}" accept-charset="UTF-8" class="form-horizontal" role="form">
+    <form method="POST" action="{{ route('post.edit',$post->id) }}" accept-charset="UTF-8" class="form-horizontal" role="form">
         @csrf
         @method('PUT')
         <div class="form-group">

@@ -326,19 +326,19 @@
                 </div>
             </div>
             <div class="row g-4">
+                @foreach ($posts as $item)
                 <div class="col-xl-4 col-lg-4 col-sm-6">
                     <article class="news-card-two wow fadeInUp" data-wow-delay="0.0s">
                         <figure class="news-banner-two imgEffect">
-                            <a href="news-details.html"><img src="assets/images/news/news-4.png" alt="travello"></a>
+                            <a href="{{ route('post_Detail',['id' => $item->id]) }}"><img src="{{ asset('/storage/images/' . $item->image) }}"
+                                alt="travello"></a>
                         </figure>
                         <div class="news-content">
                             <div class="heading">
                                 <span class="heading-pera">Tour Guide</span>
                             </div>
                             <h4 class="title line-clamp-2">
-                                <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                    Only
-                                    One Page.</a>
+                                <a href="{{ route('post_Detail',['id'=>$item->id]) }}">{{ $item->title }}</a>
                             </h4>
                             <div class="news-info">
                                 <div class="d-flex gap-10 align-items-center">
@@ -362,78 +362,8 @@
                         </div>
                     </article>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <article class="news-card-two wow fadeInUp" data-wow-delay="0.1s">
-                        <figure class="news-banner-two imgEffect">
-                            <a href="news-details.html"><img src="assets/images/news/news-5.png" alt="travello"></a>
-                        </figure>
-                        <div class="news-content">
-                            <div class="heading">
-                                <span class="heading-pera">Tour Guide</span>
-                            </div>
-                            <h4 class="title line-clamp-2">
-                                <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                    Only
-                                    One Page.</a>
-                            </h4>
-                            <div class="news-info">
-                                <div class="d-flex gap-10 align-items-center">
-                                    <div class="all-user">
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-1.jpeg" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-2.png" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-3.png" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-4.jpeg" alt="travello">
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="time">10 min read</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-sm-6">
-                    <article class="news-card-two wow fadeInUp" data-wow-delay="0.2s">
-                        <figure class="news-banner-two imgEffect">
-                            <a href="news-details.html"><img src="assets/images/news/news-6.png" alt="travello"></a>
-                        </figure>
-                        <div class="news-content">
-                            <div class="heading">
-                                <span class="heading-pera">Tour Guide</span>
-                            </div>
-                            <h4 class="title line-clamp-2">
-                                <a href="news-details.html">The World is a Book and Those Who do not Travel Read
-                                    Only
-                                    One Page.</a>
-                            </h4>
-                            <div class="news-info">
-                                <div class="d-flex gap-10 align-items-center">
-                                    <div class="all-user">
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-1.jpeg" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-2.png" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-3.png" alt="travello">
-                                        </div>
-                                        <div class="happy-user">
-                                            <img src="assets/images/hero/user-4.jpeg" alt="travello">
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="time">10 min read</p>
-                            </div>
-                        </div>
-                    </article>
-                </div>
+                @endforeach
+
             </div>
             <div class="col-12 text-center">
                 <div class="section-button d-inline-block wow fadeInUp" data-wow-delay="0.3s">

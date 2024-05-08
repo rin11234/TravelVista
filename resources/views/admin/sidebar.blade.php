@@ -128,13 +128,13 @@
             <ul class="nav nav-treeview">
 
               <li class="nav-item">
-                <a href="{{ route('post-blog.create') }}" class="nav-link">
+                <a href="{{ route('post.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add blog </p>
+                  <p>Add Blog</p>
                 </a>
-                <a href="{{ route('post-blog.index') }}" class="nav-link">
+                <a href="{{ route('post.index') }}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>A= </p>
+                    <p>index</p>
                   </a>
               </li>
             </ul>

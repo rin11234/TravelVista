@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use App\Models\Booking;
-use App\Models\Models\Category;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-
-    // Pass the categories data to the view for display
-    return view('admin.category.index', compact('categories'));
+        $comments = Comment::all();
+        return view('fe.postDeatails',compact('comments'));
     }
 
     /**
@@ -30,8 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-        return view('admin.category.add',compact('categories'));
+        //
     }
 
     /**
@@ -40,15 +35,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(CommentRequest $request)
     {
         try {
-            Category::create($request->all());
-            return redirect()->route('category.index')->with('success', 'thanh cong');
+            Comment::create($request->validated());
+            return redirect()->back()->with('success', 'Comment submitted successfully.');
         } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'that bai');
+            return redirect()->back()->with('error', 'Failed to submit comment.');
         }
+
     }
 
     /**
@@ -68,10 +63,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        $categories = Category::all();
-        return view('admin.category.edit',compact('category','categories'));
+        //
     }
 
     /**
@@ -81,15 +75,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        try {
-            $category->update($request->all());
-            return redirect()->route('category.index')->with('success', 'thanh cong');
-        } catch (\Throwable $th) {
-
-            return redirect()->back()->with('error', 'that bai');
-        }
+        //
     }
 
     /**

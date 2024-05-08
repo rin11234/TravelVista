@@ -14,6 +14,6 @@ class AdminController extends Controller
         $categories = Category::all();
 
         // Pass the categories data to the view for display
-        return view('admin.category.index', compact('categories'));
+        return view('admin.index', compact('categories'));
     }
 }

@@ -2,6 +2,7 @@
 
 @section('content')
 <table class="table">
+    <a href="{{ route('destinations.create') }}" class="btn btn-primary mb-3">Tạo mới </a>
     <thead>
         <tr>
             <th>STT</th>
