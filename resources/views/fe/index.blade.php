@@ -638,5 +638,247 @@
     <div class="search-overlay"></div>
     <!-- jquery-->
     @include('fe.footer')
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Popup</title>
+    <style>
+        /* CSS cho nút mở hộp chat */
+.open-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    background-color: #0084ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.open-button:hover {
+    background-color: #0056b3;
+}
+
+/* CSS cho nút đóng hộp chat */
+.close-button {
+    position: absolute;
+    top: 5px;
+    z-index: 9999;
+    right: 5px;
+    background-color: black;
+    border: none;
+    border-radius: 30%;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+}
+
+.close-button:hover {
+    color: #ff0000;
+}
+
+/* CSS cho hộp chat */
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 9999;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    max-height: 500px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    font-family: Arial, sans-serif;
+}
+
+.chat-popup.show {
+    display: block;
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.user-message, .bot-message {
+    margin-bottom: 10px;
+}
+
+.user-message {
+    text-align: right;
+    color: #0084ff;
+}
+
+.bot-message {
+    text-align: left;
+    color: #555;
+}
+
+.message-content {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 20px;
+    /* background-color: skyblue;
+    color: white */
+}
+.user-message .message-content {
+    background-color: skyblue;
+    color: white; /* Màu cho văn bản của người dùng */
+}
+
+.bot-message .message-content {
+    background-color: rgb( 239, 239, 239 );
+    color: black; /* Màu cho văn bản của chatbot */
+}
+
+
+.input-container {
+    display: flex;
+    align-items: center; /* Căn các phần tử vào giữa theo chiều dọc */
+    border-top: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.input-container input[type="text"] {
+    flex: 1; /* Phần tử chiếm toàn bộ không gian còn lại */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.input-container input[type="submit"] {
+    padding: 8px 20px;
+    margin-left: 10px;
+    background-color: #0084ff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Thêm hiệu ứng khi mở và đóng hộp chat */
+.chat-popup.show {
+    animation: slideIn 0.3s forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Nút mở hộp chat -->
+    <button class="open-button" onclick="openChat()">Chat với Bot</button>
+
+    <!-- Hộp chat -->
+    <div class="chat-popup" id="chat-popup">
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">
+                <div class="message-content">Xin chào! Tôi là chatbot của Travel Vista. Tôi có thể giúp gì cho bạn?</div>
+            </div>
+        </div>
+        <button class="close-button" onclick="closeChat()">x</button>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Nhập tin nhắn của bạn...">
+            <input type="submit" value="Gửi" onclick="sendMessage()">
+        </div>
+    </div>
+
+    <script>
+        function openChat() {
+            document.getElementById("chat-popup").classList.add("show");
+        }
+
+        function closeChat() {
+            document.getElementById("chat-popup").classList.remove("show");
+        }
+
+        function sendMessage() {
+    var userInput = document.getElementById("user-input").value;
+    var chatBox = document.getElementById("chat-box");
+
+    // Hiển thị tin nhắn của người dùng trong hộp chat
+    var userMessageElement = document.createElement("div");
+    userMessageElement.classList.add("user-message");
+    userMessageElement.innerHTML = '<div class="message-content">' + userInput + '</div>';
+    chatBox.appendChild(userMessageElement);
+
+    // Gửi yêu cầu POST đến API của Coze
+    var requestOptions = {
+        method: 'POST',
+        headers: {
+            'Authorization': 'Bearer pat_XrqXawBXK6yfZekEJIaKXEWOcWtcdZmWGjtJM4JlvhtFQYXHcG2KWc3W1C5lN464',
+            'Content-Type': 'application/json',
+            'Accept': '*/*',
+            'Host': 'api.coze.com',
+            'Connection': 'keep-alive',
+        },
+        body: JSON.stringify({
+            "conversation_id": "123",
+            "bot_id": "7354707609280446481",
+            "user": "123333333",
+            "query": userInput,
+            "stream": false
+        })
+    };
+
+    fetch('https://api.coze.com/open_api/v2/chat', requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            console.log(result.messages);
+            const data = result.messages;
+            let isOption = false
+            data.map((item)=>{
+                console.log(item);
+                const content = item.content;
+                // nếu là generate_answer_finish nghĩa là qua phần option
+                if(content.includes('generate_answer_finish')) {
+                    isOption = true; // chuyển qua add cho option
+                    return;
+                }
+                // nếu đang add option thì dô đây 
+                if(isOption == true) {
+                    // làm gì đó....
+
+                    return
+                }
+                // ngược lại thì là đang add message của bot trả về
+                // Hiển thị phản hồi từ bot trong hộp chat
+                var botMessageElement = document.createElement("div");
+                botMessageElement.classList.add("bot-message");
+                botMessageElement.innerHTML = '<div class="message-content">' + content + '</div>'; // cộng dô chớ a
+                chatBox.appendChild(botMessageElement);
+            })
+            
+            // Cuộn xuống cuối hộp chat
+            chatBox.scrollTop = chatBox.scrollHeight;
+        })
+        .catch(error => console.log('Error:', error));
+
+    // Xóa nội dung đã nhập của người dùng
+    document.getElementById("user-input").value = "";
+}
+</script>
+
 </body>
 </html>
