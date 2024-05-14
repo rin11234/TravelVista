@@ -34,14 +34,12 @@ Route::get('post_Detail/{id}', [HomeController::class ,'post_Detail'])->name('po
 Route::get('/search', 'TourController@search')->name('tour.search');
 Route::get('login.html', [UserController::class ,'login'])->name('login');
 Route::post('postLogin', [UserController::class ,'postLogin'])->name('postLogin');
-<<<<<<< HEAD
 Route::get('register.html', [UserController::class ,'register'])->name('register');
-=======
 Route::get('logon', [AdminController::class ,'logon'])->name('logon');
 Route::post('postLogon', [AdminController::class ,'postLogon'])->name('postLogon');
 Route::get('register', [UserController::class ,'register'])->name('register');
 Route::get('logOut',[AdminController::class , 'logOut'])->name('logOut');
->>>>>>> 8eb39afd97d61b10dc654fea27fb4c3e2cac823d
+
 Route::post('postRegister', [UserController::class ,'postRegister'])->name('postRegister');
 route::get('search',[SearchController::class ,'search'])->name('search');
 route::get('Tour-pakage',[TourPakageController::class ,'tourPakage'])->name('tourPakage');
