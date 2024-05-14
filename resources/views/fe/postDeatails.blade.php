@@ -31,7 +31,7 @@
                         <div class="d-flex flex-wrap align-items-center gap-20">
                             <div class="d-flex gap-10 align-items-center">
                                 <div class="author-img">
-                                    <img src="assets/images/news/news-1.jpeg" alt="travello">
+                                    <img src="{{ asset ('assets/images/news/news-1.jpeg') }}" alt="travello">
                                 </div>
                                 <p class="name">{{ $post->user->name }}</p>
                             </div>

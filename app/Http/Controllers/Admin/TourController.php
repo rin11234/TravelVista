@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTourRequest;
 use App\Models\Destinations;
 use App\Models\Models\Category;
 use App\Models\Tour;
@@ -40,8 +41,9 @@ class TourController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTourRequest $request)
     {
+        $data = $request->validated();
         if ($request->hasFile('photo') ) {
             $fileName = $request->photo->getClientOriginalName();
             // Store the main photo in the storage/app/public/images directory
@@ -94,7 +96,7 @@ class TourController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tour $tour)
+    public function update(StoreTourRequest $request, Tour $tour)
     {
         try{
         $tour->update($request->except('photo'));

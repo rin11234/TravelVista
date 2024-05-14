@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDestinationRequest;
 use App\Models\Destinations;
 use App\Models\Models\Category;
 use Illuminate\Http\Request;
@@ -37,7 +38,7 @@ class DestinationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreDestinationRequest $request)
     {
 
         if ($request->hasFile('photo') ) {
@@ -55,9 +56,9 @@ class DestinationsController extends Controller
             // Create a new product
             $destination = Destinations::create($data);
 
-            return redirect()->route('destinations.index')->with('success', 'Thành công');
+            return redirect()->route('destinations.index')->with('success', 'Thành công ');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Thất bại: ' . $th->getMessage());
+            return redirect()->back()->with('error','that bai ' );
         }
     }
 
@@ -91,7 +92,7 @@ class DestinationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Destinations $destination)
+    public function update(StoreDestinationRequest $request, Destinations $destination)
 {
     try {
         $destination->update($request->except('photo')); // Update the destination with form data except photo

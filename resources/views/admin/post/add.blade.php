@@ -23,9 +23,9 @@
             </select>
         </div>
         <div class="form-group">
-            <label>Danh Mục</label>
+            <label>Thẻ tag</label>
             <select class="form-control" name="user_id">
-                <option value="0"> Danh Mục Cha </option>
+                <option value="0"> Chọn thẻ Tag </option>
                 @foreach ($users as $item)
                     <option value="{{ $item->id }}"> {{ $item->name }} </option>
                 @endforeach
