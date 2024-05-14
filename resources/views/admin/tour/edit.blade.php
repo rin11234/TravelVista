@@ -18,15 +18,15 @@
             <input type="text" id="ngay_khoi_hanh" name="ngay_khoi_hanh" class="form-control" value="{{ $tour->ngay_khoi_hanh }}" required>
         </div>
         <div class="form-group">
-            <label for="ngay_khoi_hanh">Ngày khởi hành:</label>
+            <label for="ngay_khoi_hanh">Thời gian:</label>
             <input type="text" id="ngay_khoi_hanh" name="so_cho" class="form-control" value="{{ $tour->ngay_khoi_hanh }}" required>
         </div>
         <div class="form-group">
-            <label for="thoi_gian">Thời gian:</label>
+            <label for="thoi_gian">Xuất phát:</label>
             <input type="text" id="thoi_gian" name="thoi_gian" class="form-control" value="{{ $tour->thoi_gian }}" required>
         </div>
         <div class="form-group">
-            <label for="xuat_phat">Xuất phát:</label>
+            <label for="xuat_phat">Số chỗ:</label>
             <input type="text" id="xuat_phat" name="xuat_phat" class="form-control" value="{{ $tour->xuat_phat }}" required>
         </div>
         <div class="form-group">
@@ -35,7 +35,7 @@
         </div>
         <div class="form-group">
             <label>Mô Tả Chi Tiết</label>
-            <textarea name="description" id="content" class="form-control">{{ $tour->description }}</textarea>
+            <textarea type name="description" id="content" class="form-control" value="{{ $tour->description }}"> {{ $tour->description }}</textarea>
         </div>
 
         <div class="form-group has-error">
@@ -70,5 +70,15 @@
 
         <button type="submit" class="btn btn-primary">cập nhật tours du lịch</button>
     </form>
+    <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
 
+    <!-- Initialize CKEditor -->
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#content'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
 @endsection
+

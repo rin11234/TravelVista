@@ -24,10 +24,10 @@
                             <div class="contact-form mb-24">
                                 <div class="position-relative ">
                                     <div class="d-flex justify-content-between aligin-items-center">
-                                        <label class="contact-label"  >Password</label>
-                                        <a href="forgot-pass.html"><span class="text-primary text-15"> Forgot
-                                                password? </span></a>
+                                        <label class="contact-label">Password</label>
+                                        <a href="{{ route('forgotPassword') }}"><span class="text-primary text-15"> Forgot password? </span></a>
                                     </div>
+
                                     <input type="password" class="form-control contact-input password-input"
                                     type="password" name="password" placeholder="Password">
                                     <i class="toggle-password ri-eye-line"></i>
@@ -43,7 +43,7 @@
                             <div class="create-account">
                                 <p>
                                     Don’t have an account?
-                                    <a href="register.html">
+                                    <a href="{{ route('register') }}">
                                         <span class="text-primary">Register</span>
                                     </a>
                                 </p>

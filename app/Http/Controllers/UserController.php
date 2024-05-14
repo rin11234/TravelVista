@@ -37,5 +37,10 @@ class UserController extends Controller
         return redirect()->back()->with('error','that bai cmnr');
 
     }
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.user.index', compact('users'));
+    }
 
 }

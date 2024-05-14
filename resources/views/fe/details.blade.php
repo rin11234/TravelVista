@@ -56,11 +56,16 @@
                                             <i class="ri-user-line"></i>
                                             <p class="pera">{{ $tour->so_cho }}</p>
                                         </div>
+                                        <!-- Add the price with red color -->
+                                        <div class="price">
+                                            <button class="btn btn-danger"><p class="pera" style="color: rgb(227, 215, 215);">Giá chỉ từ : {{ $tour->price }} </p></button>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                         <!-- / Details Heading -->
 
                         <div class="mt-30">
